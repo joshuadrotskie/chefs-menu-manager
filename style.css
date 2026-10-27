@@ -1,0 +1,258 @@
+/* ==========================================================================
+   1. CSS RESET & VARIABLES (Base Style - Requirement 2.2)
+   ========================================================================== */
+:root {
+  /* Color Palette */
+  --primary-color: #1e3a8a;
+  --primary-hover: #1d4ed8;
+  --secondary-color: #0d9488;
+  --accent-color: #f59e0b;
+  --text-dark: #1f2937;
+  --text-light: #f9fafb;
+  --bg-light: #f3f4f6;
+  --bg-white: #ffffff;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition-fast: 0.2s ease-in-out;
+
+  /* Typographic Scale (Relative Units - Requirement 3.2) */
+  --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --base-size: 1rem;       /* 16px default */
+  --scale-h1: 2.5rem;
+  --scale-h2: 1.875rem;
+  --scale-h3: 1.25rem;
+}
+
+/* Universal Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: var(--base-size);
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY (Requirement 2.3)
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.75em;
+  color: var(--primary-color);
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--scale-h1); }
+h2 { font-size: var(--scale-h2); }
+h3 { font-size: var(--scale-h3); }
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   3. LAYOUT STRUCTURE (Requirement 2.4 - Desktop Solution)
+   ========================================================================== */
+/* Main Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header & Navigation (Flexbox Layout) */
+header {
+  background-color: var(--bg-white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+}
+
+/* Interactive Pseudo-Classes (Requirement 2.5) */
+.nav-links a:hover,
+.nav-links a:focus {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  text-decoration: none;
+  outline: 2px solid var(--accent-color);
+}
+
+.nav-links a:active {
+  transform: scale(0.97);
+}
+
+/* Main Content Layout (Grid Layout) */
+main {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Multi-column desktop layout */
+  gap: 2rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(280px, 1fr) );
+  gap: 1.5rem;
+}
+
+/* Visual Styling & Cards (Requirement 2.5) */
+.card {
+  background: var(--bg-white);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--primary-hover);
+  outline: 2px solid var(--accent-color);
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   4. RESPONSIVE IMAGES (Requirement 3.3)
+   ========================================================================== */
+img, picture, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   5. RESPONSIVE MEDIA QUERIES & BREAKPOINTS (Requirement 3.1)
+   ========================================================================== */
+/* Tablet Breakpoint (max-width: 992px) */
+@media screen and (max-width: 992px) {
+  .grid-layout {
+    grid-template-columns: 1fr; /* Switches multi-column to single-column */
+  }
+}
+
+/* Mobile Devices Breakpoint (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  :root {
+    --scale-h1: 2rem;
+    --scale-h2: 1.5rem;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .container {
+    width: 95%;
+    padding: 0 0.5rem;
+  }
+}
